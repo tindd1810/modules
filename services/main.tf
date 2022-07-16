@@ -1,20 +1,6 @@
-# terraform {
-#   # required_providers {
-#   #   aws = {
-#   #     version = ">= 2.7.0"
-#   #     source  = "hashicorp/aws"
-#   #   }
-#   # }
-#   # backend "s3" {
-#   #   bucket = "dinhlehoangdemo-terraform-state"
-#   #   key    = "services/terraform.tfstate"
-#   #   region = "ap-southeast-1"
-#   # }
+# provider "aws" {
+#   region = "ap-southeast-1"
 # }
-
-provider "aws" {
-  region = "ap-southeast-1"
-}
 
 resource "aws_instance" "hoangdl-amz-ec2" {
   count                  = 2
