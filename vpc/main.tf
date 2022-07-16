@@ -6,7 +6,7 @@ resource "aws_default_vpc" "default" {
 }
 
 resource "aws_security_group" "hoangdl-sg" {
-  name        = "hoangdl-sg"
+  name        = var.sg-name
   description = "Inbound traffic"
   vpc_id      = aws_default_vpc.default.id
 
