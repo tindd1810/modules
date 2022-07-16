@@ -1,5 +1,5 @@
 resource "aws_lb" "hoangdl-alb" {
-  name               = "hoangdl-alb"
+  name               = var.alb-name
   internal           = false
   load_balancer_type = "application"
   security_groups    = [data.terraform_remote_state.networking.outputs.sg-id]
@@ -7,7 +7,7 @@ resource "aws_lb" "hoangdl-alb" {
 
 }
 resource "aws_lb_target_group" "test" {
-  name     = "hoangdl-tg"
+  name     = var.target-group-name
   port     = 80
   protocol = "HTTP"
   vpc_id   = data.terraform_remote_state.networking.outputs.vpc-id
