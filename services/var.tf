@@ -7,3 +7,6 @@ variable "target-group-name" {
 variable "isProd" {
   description = "Check environment"
 }
+variable "isTesting" {
+  description = "Check environment"
+}
