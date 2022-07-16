@@ -15,7 +15,7 @@ data "terraform_remote_state" "networking" {
   backend = "s3"
 
   config = {
-    bucket = "dinhlehoangdemo-terraform-state"
+    bucket = "dinhlehoangdemo-terraform-state-master"
     key    = "vpc/terraform.tfstate"
     region = "ap-southeast-1"
   }
