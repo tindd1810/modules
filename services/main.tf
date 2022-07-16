@@ -34,6 +34,6 @@ data "aws_subnet" "hoangdl-subnet" {
   id       = each.value
 }
 
-output "abc" {
+output "vpc-id" {
   value = data.terraform_remote_state.networking.outputs.vpc-id
 }
