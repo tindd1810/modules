@@ -1,20 +1,20 @@
-terraform {
-  # required_providers {
-  #   aws = {
-  #     version = ">= 2.7.0"
-  #     source  = "hashicorp/aws"
-  #   }
-  # }
-  # backend "s3" {
-  #   bucket = "dinhlehoangdemo-terraform-state"
-  #   key    = "services/terraform.tfstate"
-  #   region = "ap-southeast-1"
-  # }
-}
-
-# provider "aws" {
-#   region = "ap-southeast-1"
+# terraform {
+#   # required_providers {
+#   #   aws = {
+#   #     version = ">= 2.7.0"
+#   #     source  = "hashicorp/aws"
+#   #   }
+#   # }
+#   # backend "s3" {
+#   #   bucket = "dinhlehoangdemo-terraform-state"
+#   #   key    = "services/terraform.tfstate"
+#   #   region = "ap-southeast-1"
+#   # }
 # }
+
+provider "aws" {
+  region = "ap-southeast-1"
+}
 
 resource "aws_instance" "hoangdl-amz-ec2" {
   count                  = 2
@@ -38,9 +38,6 @@ data "terraform_remote_state" "networking" {
     region = "ap-southeast-1"
   }
 }
-# data "aws_security_group" "sg" {
-#   name = "hoangdl-sg"
-# }
 
 data "aws_subnet_ids" "example" {
   vpc_id = data.terraform_remote_state.networking.outputs.vpc-id
@@ -52,5 +49,5 @@ data "aws_subnet" "hoangdl-subnet" {
 }
 
 output "abc" {
-  value = data.terraform_remote_state.networking.outputs.sg-id
+  value = data.terraform_remote_state.networking.outputs.vpc-id
 }
