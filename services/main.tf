@@ -1,7 +1,3 @@
-# provider "aws" {
-#   region = "ap-southeast-1"
-# }
-
 resource "aws_instance" "hoangdl-amz-ec2" {
   count                  = 2
   ami                    = "ami-0c802847a7dd848c0"
