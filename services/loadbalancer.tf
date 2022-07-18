@@ -37,56 +37,56 @@ resource "aws_lb_target_group_attachment" "lambda-1" {
 }
 
 
-resource "aws_lb_listener" "hoangdl" {
-  load_balancer_arn = aws_lb.hoangdl-alb.arn
-  port              = "80"
-  protocol          = "HTTP"
+# resource "aws_lb_listener" "hoangdl" {
+#   load_balancer_arn = aws_lb.hoangdl-alb.arn
+#   port              = "80"
+#   protocol          = "HTTP"
 
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.ec2-tg.arn
-  }
-}
-resource "aws_lb_listener" "lambda" {
-  load_balancer_arn = aws_lb.hoangdl-alb.arn
-  port              = "80"
-  protocol          = "HTTP"
+#   default_action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.ec2-tg.arn
+#   }
+# }
+# resource "aws_lb_listener" "lambda" {
+#   load_balancer_arn = aws_lb.hoangdl-alb.arn
+#   port              = "80"
+#   protocol          = "HTTP"
 
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.lambda-tg.arn
-  }
-}
+#   default_action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.lambda-tg.arn
+#   }
+# }
 
-resource "aws_lb_listener_rule" "static" {
-  listener_arn = aws_lb_listener.hoangdl.arn
-  priority     = 100
+# resource "aws_lb_listener_rule" "static" {
+#   listener_arn = aws_lb_listener.hoangdl.arn
+#   priority     = 100
 
-  action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.ec2-tg.arn
-  }
+#   action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.ec2-tg.arn
+#   }
 
-  condition {
-    path_pattern {
-      values = ["/test*"]
-    }
-  }
+#   condition {
+#     path_pattern {
+#       values = ["/test*"]
+#     }
+#   }
 
-}
-resource "aws_lb_listener_rule" "lambda" {
-  listener_arn = aws_lb_listener.hoangdl.arn
-  priority     = 101
+# }
+# resource "aws_lb_listener_rule" "lambda" {
+#   listener_arn = aws_lb_listener.hoangdl.arn
+#   priority     = 101
 
-  action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.lambda-tg.arn
-  }
+#   action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.lambda-tg.arn
+#   }
 
-  condition {
-    path_pattern {
-      values = ["/search*"]
-    }
-  }
+#   condition {
+#     path_pattern {
+#       values = ["/search*"]
+#     }
+#   }
 
-}
+# }
