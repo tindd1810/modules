@@ -75,7 +75,7 @@ resource "aws_lb_listener" "lambda" {
 
 # }
 resource "aws_lb_listener_rule" "lambda" {
-  listener_arn = aws_lb_listener.hoangdl.arn
+  listener_arn = aws_lb_listener.lambda.arn
   priority     = 101
 
   action {
