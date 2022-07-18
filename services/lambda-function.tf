@@ -40,3 +40,10 @@ resource "aws_lambda_function" "test_lambda" {
     }
   }
 }
+resource "aws_lambda_permission" "with_lb" {
+  statement_id  = "AllowExecutionFromlb"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.test_lambda.arn
+  principal     = "elasticloadbalancing.amazonaws.com"
+  source_arn    = aws_lb_target_group.lambda-tg.arn
+}

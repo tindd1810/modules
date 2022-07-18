@@ -33,6 +33,7 @@ resource "aws_lb_target_group_attachment" "ec2-1" {
 resource "aws_lb_target_group_attachment" "lambda-1" {
   target_group_arn = aws_lb_target_group.lambda-tg.arn
   target_id        = aws_lambda_function.test_lambda.arn
+  depends_on       = [aws_lambda_permission.with_lb]
   port             = 80
 }
 
