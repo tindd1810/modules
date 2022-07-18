@@ -2,7 +2,7 @@ resource "aws_lambda_function" "test_lambda" {
   # If the file is not in the current working directory you will need to include a 
   # path.module in the filename.
   filename      = "${path.module}/lambda-function.zip"
-  function_name = "alb-demo"
+  function_name = var.lambda-function-name
   handler       = "index.test"
 
   # The filebase64sha256() function is available in Terraform 0.11.12 and later
