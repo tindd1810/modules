@@ -21,12 +21,12 @@ resource "aws_lb_target_group" "lambda-tg" {
 }
 
 resource "aws_lb_target_group_attachment" "ec2-0" {
-  target_group_arn = aws_lb_target_group.test.arn
+  target_group_arn = aws_lb_target_group.ec2-tg
   target_id        = aws_instance.hoangdl-amz-ec2[0].id
   port             = 80
 }
 resource "aws_lb_target_group_attachment" "ec2-1" {
-  target_group_arn = aws_lb_target_group.test.arn
+  target_group_arn = aws_lb_target_group.ec2-tg
   target_id        = aws_instance.hoangdl-amz-ec2[1].id
   port             = 80
 }
@@ -38,7 +38,7 @@ resource "aws_lb_listener" "hoangdl" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.test.arn
+    target_group_arn = aws_lb_target_group.ec2-tg.arn
   }
 }
 
@@ -48,7 +48,7 @@ resource "aws_lb_listener_rule" "static" {
 
   action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.test.arn
+    target_group_arn = aws_lb_target_group.ec2-tg.arn
   }
 
   condition {
