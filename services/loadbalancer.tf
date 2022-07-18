@@ -6,14 +6,19 @@ resource "aws_lb" "hoangdl-alb" {
   subnets            = [for subnet in data.aws_subnet.hoangdl-subnet : subnet.id]
 
 }
-resource "aws_lb_target_group" "test" {
+resource "aws_lb_target_group" "ec2-tg" {
   name     = var.target-group-name
   port     = 80
   protocol = "HTTP"
   vpc_id   = data.terraform_remote_state.networking.outputs.vpc-id
 }
 
-
+resource "aws_lb_target_group" "lambda-tg" {
+  name     = var.target-group-name
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = data.terraform_remote_state.networking.outputs.vpc-id
+}
 
 resource "aws_lb_target_group_attachment" "ec2-0" {
   target_group_arn = aws_lb_target_group.test.arn
