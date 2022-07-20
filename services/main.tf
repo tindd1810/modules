@@ -1,5 +1,5 @@
 resource "aws_instance" "hoangdl-amz-ec2" {
-  count                  = 2
+  # count                  = 2
   ami                    = "ami-0c802847a7dd848c0"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [data.terraform_remote_state.networking.outputs.sg-id]
@@ -35,8 +35,5 @@ output "vpc-id" {
   value = data.terraform_remote_state.networking.outputs.vpc-id
 }
 output "ec2-ip0" {
-  value = aws_instance.hoangdl-amz-ec2[0].public_ip
-}
-output "ec2-ip1" {
-  value = aws_instance.hoangdl-amz-ec2[1].public_ip
+  value = aws_instance.hoangdl-amz-ec2.public_ip
 }
