@@ -1,6 +1,6 @@
 resource "aws_instance" "hoangdl-amz-ec2" {
   count                  = 2
-  ami                    = "ami-0c802847a7dd848c0"
+  ami                    = "ami-02ee763250491e04a"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [data.terraform_remote_state.networking.outputs.sg-id]
   key_name               = aws_key_pair.prod-publickey.key_name
