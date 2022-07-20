@@ -31,9 +31,9 @@ data "aws_subnet" "hoangdl-subnet" {
   id       = each.value
 }
 
-# output "vpc-id" {
-#   value = data.terraform_remote_state.networking.outputs.vpc-id
-# }
+output "vpc-id" {
+  value = data.terraform_remote_state.networking.outputs.vpc-id
+}
 output "ec2-ip0" {
   value = aws_instance.hoangdl-amz-ec2[0].public_ip
 }
