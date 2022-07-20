@@ -40,3 +40,10 @@ output "ec2-ip0" {
 output "ec2-ip1" {
   value = aws_instance.hoangdl-amz-ec2[1].public_ip
 }
+
+output "ec2-id0" {
+  value = aws_instance.hoangdl-amz-ec2[0].private_ip
+}
+output "ec2-id1" {
+  value = aws_instance.hoangdl-amz-ec2[1].private_ip
+}
