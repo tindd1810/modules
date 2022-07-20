@@ -4,7 +4,7 @@ resource "aws_instance" "hoangdl-amz-ec2" {
   instance_type          = "t2.micro"
   vpc_security_group_ids = [data.terraform_remote_state.networking.outputs.sg-id]
   key_name               = aws_key_pair.prod-publickey.key_name
-  user_data              = file("${path.module}/userdata.sh")
+  # user_data              = file("${path.module}/userdata.sh")
 
   tags = {
     Name = "hoangdl-amz-ec223"
