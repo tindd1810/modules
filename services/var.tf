@@ -12,3 +12,7 @@ variable "lambda-function-name" {
 variable "env" {
   description = "environment"
 }
+variable "bucket" {
+  description = ""
+  default = "dinhlehoangdemo-terraform-state-testing"
+}
