@@ -33,10 +33,6 @@ data "aws_subnet" "hoangdl-subnet" {
 output "vpc-id" {
   value = data.terraform_remote_state.networking.outputs.vpc-id
 }
-output "ec2-ip0" {
+output "agent-ip" {
   value = aws_instance.jenkins-node.public_ip
-}
-
-output "ec2-id0" {
-  value = aws_instance.jenkins-node.private_ip
 }
