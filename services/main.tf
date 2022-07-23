@@ -1,5 +1,5 @@
 resource "aws_instance" "hoangdl-amz-ec2" {
-  count                  = 3
+  count                  = 1
   ami                    = "ami-0c802847a7dd848c0"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [data.terraform_remote_state.networking.outputs.sg-id]
