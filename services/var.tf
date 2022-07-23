@@ -13,6 +13,5 @@ variable "env" {
   description = "environment"
 }
 variable "bucket" {
-  description = ""
-  default = "dinhlehoangdemo-terraform-state-testing"
+  description = "S3 bucket that stores tf.state file"
 }
