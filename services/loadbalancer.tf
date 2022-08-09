@@ -1,9 +1,9 @@
-resource "aws_lb" "hoangdl-alb" {
+resource "aws_lb" "tindd-alb" {
   name               = var.alb-name
   internal           = false
   load_balancer_type = "application"
   security_groups    = [data.terraform_remote_state.networking.outputs.sg-id]
-  subnets            = [for subnet in data.aws_subnet.hoangdl-subnet : subnet.id]
+  subnets            = [for subnet in data.aws_subnet.tindd-subnet : subnet.id]
 
 }
 resource "aws_lb_target_group" "ec2-tg" {
@@ -22,12 +22,12 @@ resource "aws_lb_target_group" "ec2-tg" {
 
 resource "aws_lb_target_group_attachment" "ec2-0" {
   target_group_arn = aws_lb_target_group.ec2-tg.arn
-  target_id        = aws_instance.hoangdl-amz-ec2[0].id
+  target_id        = aws_instance.tindd-amz-ec2[0].id
   port             = 80
 }
 resource "aws_lb_target_group_attachment" "ec2-1" {
   target_group_arn = aws_lb_target_group.ec2-tg.arn
-  target_id        = aws_instance.hoangdl-amz-ec2[1].id
+  target_id        = aws_instance.tindd-amz-ec2[1].id
   port             = 80
 }
 # resource "aws_lb_target_group_attachment" "lambda-1" {
@@ -38,8 +38,8 @@ resource "aws_lb_target_group_attachment" "ec2-1" {
 # }
 
 
-resource "aws_lb_listener" "hoangdl" {
-  load_balancer_arn = aws_lb.hoangdl-alb.arn
+resource "aws_lb_listener" "tindd" {
+  load_balancer_arn = aws_lb.tindd-alb.arn
   port              = "80"
   protocol          = "HTTP"
 
@@ -60,7 +60,7 @@ resource "aws_lb_listener" "hoangdl" {
 # }
 
 resource "aws_lb_listener_rule" "static" {
-  listener_arn = aws_lb_listener.hoangdl.arn
+  listener_arn = aws_lb_listener.tindd.arn
   priority     = 100
 
   action {

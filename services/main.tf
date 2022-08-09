@@ -1,4 +1,4 @@
-resource "aws_instance" "hoangdl-amz-ec2" {
+resource "aws_instance" "tindd-amz-ec2" {
   count                  = 2
   ami                    = "ami-0c802847a7dd848c0"
   instance_type          = "t2.micro"
@@ -7,7 +7,7 @@ resource "aws_instance" "hoangdl-amz-ec2" {
   user_data              = file("${path.module}/userdata.sh")
 
   tags = {
-    Name = "hoangdl-amz-ec223"
+    Name = "tindd-amz-ec2"
   }
 }
 
@@ -26,7 +26,7 @@ data "aws_subnet_ids" "example" {
   vpc_id = data.terraform_remote_state.networking.outputs.vpc-id
 }
 
-data "aws_subnet" "hoangdl-subnet" {
+data "aws_subnet" "tindd-subnet" {
   for_each = data.aws_subnet_ids.example.ids
   id       = each.value
 }
@@ -40,6 +40,6 @@ output "ec2-ip0" {
 output "ec2-ip1" {
   value = aws_instance.hoangdl-amz-ec2[1].public_ip
 }
-output "load-balancer" {
-  value = aws_lb.hoangdl-alb.dns_name
-}
+# output "load-balancer" {
+#   value = aws_lb.hoangdl-alb.dns_name
+# }

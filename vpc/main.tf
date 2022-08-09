@@ -5,7 +5,7 @@ resource "aws_default_vpc" "default" {
   }
 }
 
-resource "aws_security_group" "hoangdl-sg" {
+resource "aws_security_group" "tindd-sg" {
   name        = var.sg-name
   description = "Inbound traffic"
   vpc_id      = aws_default_vpc.default.id
@@ -18,7 +18,7 @@ resource "aws_security_group_rule" "HTTP-traffic" {
   to_port           = 80
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.hoangdl-sg.id
+  security_group_id = aws_security_group.tindd-sg.id
 }
 
 resource "aws_security_group_rule" "SSH-traffic" {
@@ -27,7 +27,7 @@ resource "aws_security_group_rule" "SSH-traffic" {
   to_port           = 22
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.hoangdl-sg.id
+  security_group_id = aws_security_group.tindd-sg.id
 }
 
 resource "aws_security_group_rule" "allow_all" {
@@ -36,11 +36,11 @@ resource "aws_security_group_rule" "allow_all" {
   protocol          = "-1"
   from_port         = 0
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.hoangdl-sg.id
+  security_group_id = aws_security_group.tindd-sg.id
 }
 
 output "sg-id" {
-  value = aws_security_group.hoangdl-sg.id
+  value = aws_security_group.tindd-sg.id
 }
 output "vpc-id" {
   value = aws_default_vpc.default.id
