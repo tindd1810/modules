@@ -18,7 +18,7 @@ data "terraform_remote_state" "networking" {
     bucket = var.bucket
 
     key    = "vpc/terraform.tfstate"
-    region = "ap-sougit theast-1"
+    region = "ap-southeast-1"
   }
 }
 
