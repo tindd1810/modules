@@ -1,10 +1,10 @@
 resource "aws_instance" "tindd-amz-ec2" {
   count                  = 2
-  ami                    = "ami-0c802847a7dd848c0"
+  ami                    = "ami-04ff9e9b51c1f62ca"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [data.terraform_remote_state.networking.outputs.sg-id]
   key_name               = aws_key_pair.prod-publickey.key_name
-  #user_data              = file("${path.module}/userdata.sh")
+  user_data              = file("${path.module}/userdata.sh")
 
   tags = {
     Name = "tindd-amz-ec2"
@@ -22,14 +22,14 @@ data "terraform_remote_state" "networking" {
   }
 }
 
-data "aws_subnet_ids" "example" {
-  vpc_id = data.terraform_remote_state.networking.outputs.vpc-id
-}
+# data "aws_subnet_ids" "example" {
+#   vpc_id = data.terraform_remote_state.networking.outputs.vpc-id
+# }
 
-data "aws_subnet" "tindd-subnet" {
-  for_each = data.aws_subnet_ids.example.ids
-  id       = each.value
-}
+# data "aws_subnet" "tindd-subnet" {
+#   for_each = data.aws_subnet_ids.example.ids
+#   id       = each.value
+# }
 
 output "vpc-id" {
   value = data.terraform_remote_state.networking.outputs.vpc-id
