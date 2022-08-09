@@ -4,7 +4,7 @@ resource "aws_instance" "tindd-amz-ec2" {
   instance_type          = "t2.micro"
   vpc_security_group_ids = [data.terraform_remote_state.networking.outputs.sg-id]
   key_name               = aws_key_pair.prod-publickey.key_name
-  user_data              = file("${path.module}/userdata.sh")
+  #user_data              = file("${path.module}/userdata.sh")
 
   tags = {
     Name = "tindd-amz-ec2"
@@ -35,10 +35,10 @@ output "vpc-id" {
   value = data.terraform_remote_state.networking.outputs.vpc-id
 }
 output "ec2-ip0" {
-  value = aws_instance.hoangdl-amz-ec2[0].public_ip
+  value = aws_instance.tindd-amz-ec2[0].public_ip
 }
 output "ec2-ip1" {
-  value = aws_instance.hoangdl-amz-ec2[1].public_ip
+  value = aws_instance.tindd-amz-ec2[1].public_ip
 }
 # output "load-balancer" {
 #   value = aws_lb.hoangdl-alb.dns_name
