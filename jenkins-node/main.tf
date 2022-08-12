@@ -1,4 +1,5 @@
 resource "aws_instance" "jenkins-node" {
+  count = 2
   ami                    = "ami-04ff9e9b51c1f62ca"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [data.terraform_remote_state.networking.outputs.sg-id]
