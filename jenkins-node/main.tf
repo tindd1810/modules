@@ -34,6 +34,6 @@ data "terraform_remote_state" "networking" {
 output "vpc-id" {
   value = data.terraform_remote_state.networking.outputs.vpc-id
 }
-output "agent-ip" {
-  value = aws_instance.jenkins-node.public_ip
-}
+# output "agent-ip" {
+#   value = aws_instance.jenkins-node.public_ip
+# }
