@@ -22,14 +22,14 @@ data "terraform_remote_state" "networking" {
   }
 }
 
-# data "aws_subnet_ids" "example" {
-#   vpc_id = data.terraform_remote_state.networking.outputs.vpc-id
-# }
+data "aws_subnet_ids" "example" {
+  vpc_id = data.terraform_remote_state.networking.outputs.vpc-id
+}
 
-# data "aws_subnet" "tindd-subnet" {
-#   for_each = data.aws_subnet_ids.example.ids
-#   id       = each.value
-# }
+data "aws_subnet" "tindd-subnet" {
+  for_each = data.aws_subnet_ids.example.ids
+  id       = each.value
+}
 
 output "vpc-id" {
   value = data.terraform_remote_state.networking.outputs.vpc-id
