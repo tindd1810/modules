@@ -3,7 +3,7 @@ resource "aws_lb" "tindd-alb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [data.terraform_remote_state.networking.outputs.sg-id]
-  subnets            = [for subnet in data.aws_subnet.tindd-subnet : subnet.id]
+  #subnets            = [for subnet in data.aws_subnet.tindd-subnet : subnet.id]
 
 }
 resource "aws_lb_target_group" "ec2-tg" {
