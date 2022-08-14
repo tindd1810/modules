@@ -15,3 +15,8 @@ variable "target-group-name" {
 variable "bucket" {
   description = "S3 bucket that stores tf.state file"
 }
+
+variable "ec2-instance" {
+  description = "count ec2"
+  type = number
+}
