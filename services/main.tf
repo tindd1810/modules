@@ -40,6 +40,6 @@ output "ec2-ip0" {
 output "ec2-ip1" {
   value = aws_instance.tindd-amz-ec2[1].public_ip
 }
-# output "load-balancer" {
-#   value = aws_lb.hoangdl-alb.dns_name
-# }
+output "load-balancer" {
+  value = aws_lb.tindd-alb.dns_name
+}
