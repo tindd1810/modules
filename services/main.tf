@@ -37,9 +37,9 @@ output "vpc-id" {
 output "ec2-ip0" {
   value = aws_instance.tindd-amz-ec2[0].public_ip
 }
-output "ec2-ip1" {
-  value = aws_instance.tindd-amz-ec2[1].public_ip
-}
+# output "ec2-ip1" {
+#   value = aws_instance.tindd-amz-ec2[1].public_ip
+# }
 # output "load-balancer" {
 #   value = aws_lb.tindd-alb.dns_name
 # }
